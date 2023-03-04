@@ -93,6 +93,7 @@ h1 {
 
     padding: calc(1 * var(--u));
     border-radius: var(--brd);
+    margin-bottom: var(--u);
 }
 
 .image {
@@ -104,6 +105,8 @@ h1 {
     border-top-right-radius: var(--brd);
 
     border-bottom: 0;
+
+    image-rendering: pixelated;
 }
 
 .desc {
