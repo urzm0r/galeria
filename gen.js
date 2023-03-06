@@ -1,3 +1,27 @@
+//>> Image Info
+
+let imgList = [
+    {
+        iTitle : "Call On Amadeus",
+        iAuthor : "Ambert Lan",
+        iYear : "1988",
+        iMedium : "Oil paint on canvas",
+        iDimensions : "84.1 cm x 152.4 cm",
+        iInfo : "Amadeus sleeps on A CALM ROAD ( to Salvador ). People were sleeping, their sleep is deep. Deep, deep, deep, deep deep sleep. Lorem ipsum dollar in amount.",
+        iSrcPath : "img/2000 acres.png"
+    },
+    {
+        iTitle : "Leaves Over Texas",
+        iAuthor : "Lambert Tens",
+        iYear : "2010",
+        iMedium : "Pastel",
+        iDimensions : "60cm x 55.5cm",
+        iInfo : "ijjfajjljlljljfaljjljljljlafjljlj aajj....... bbbb uiehrquehfajdfhajldhfljhlfahlhlhfahlhlfahhlfahlafhlhfa aj...... bbbbb adadhlhlhldahlhlhlhljfshljfsjljlsfjsjsjfslkdfj akdaj aj..... bbbbbb hdahadjljljladjljjljadljdajldjldaljfhadjfhadjffkgjeprta jj...... aj aj aj aj ajaja.....",
+        iSrcPath : "img/lot.png"
+    }
+];
+const ImgListLength = imgList.length - 1;
+
 //>> INFO HIDE/SHOW 
 
 function change(callerId) {
@@ -45,8 +69,12 @@ function showInfo(destId) {
 
 //>> CARD GENERATION
 
+let nextId = 2;
+
 function createCard() {
     const mainCont = document.getElementById('main-cont');
+    const randomImgListId = Math.floor(Math.random() * (ImgListLength - 0 + 1)) // ( max - min + 1 ) + min; 
+    console.log(randomImgListId);
 
     // card
     const card = document.createElement('div');
@@ -56,7 +84,7 @@ function createCard() {
     // card/image
     const image = document.createElement('img');
     image.className = 'image b';
-    image.src = 'img/lot.png' //! tbc
+    image.src = imgList[randomImgListId].iSrcPath;
     card.appendChild(image);
 
     // card/desc
@@ -73,14 +101,14 @@ function createCard() {
             // card/desc/desc-title/img-title
 
             const imgTitle = document.createElement('p');
-            imgTitle.innerHTML = 'leaves over texas';
+            imgTitle.innerHTML = imgList[randomImgListId].iTitle;
             imgTitle.className = 'img-title flex-cont';
             descTitle.appendChild(imgTitle);
 
             //card/desc/desc-title/img-author
 
             const imgAuthor = document.createElement('p');
-            imgAuthor.innerHTML = 'Lambert Tens';
+            imgAuthor.innerHTML = imgList[randomImgListId].iAuthor;
             imgAuthor.className = 'img-author flex-cont';
             descTitle.appendChild(imgAuthor);
 
@@ -94,28 +122,28 @@ function createCard() {
 
             const year = document.createElement('div');
             year.className = 'year desc-btn flex-cont b';
-            year.innerHTML = '2010'; //!
+            year.innerHTML = imgList[randomImgListId].iYear;
             descInfo.appendChild(year);
 
             //card/desc/desc-info/medium
 
             const medium = document.createElement('div');
             medium.className = 'medium desc-btn flex-cont b';
-            medium.innerHTML = 'Pastel'; //!
+            medium.innerHTML = imgList[randomImgListId].iMedium;
             descInfo.appendChild(medium);
 
             //card/desc/desc-info/dimensions
 
             const dimensions = document.createElement('div');
             dimensions.className = 'year desc-btn flex-cont b';
-            dimensions.innerHTML = '60cm x 55.5cm'; //!
+            dimensions.innerHTML = imgList[randomImgListId].iDimensions;
             descInfo.appendChild(dimensions);
 
             //card/desc/desc-info/showmore
 
             const showmore = document.createElement('button');
             showmore.className = 'showmore desc-btn flex-cont b hvr';
-            showmore.id = '2'; //! tbc
+            showmore.id = nextId.toString();
             showmore.innerHTML = 'Historia viii*';
             showmore.type = 'button';
             showmore.setAttribute('onclick', 'change(this.id)')
@@ -125,7 +153,8 @@ function createCard() {
 
         const moreInfo = document.createElement('div');
         moreInfo.className = 'more-info b';
-        moreInfo.id = '2info'; //! tbc
+        moreInfo.id = nextId.toString() + 'info';
+        nextId = nextId + 1;
         desc.appendChild(moreInfo);
 
             //card/desc/more-info/more-info-pad
@@ -137,9 +166,22 @@ function createCard() {
                 //card/desc/more-info/more-info-pad/<p>
 
                     const info = document.createElement('p');
-                    info.innerHTML = 'ijjfajjljlljljfaljjljljljlafjljlj aajj.......  bbbb uiehrquehfajdfhajldhfljhlfahlhlhfahlhlfahhlfahlafhlhfa aj...... bbbbb adadhlhlhldahlhlhlhljfshljfsjljlsfjsjsjfslkdfj akdaj aj..... bbbbbb hdahadjljljladjljjljadljdajldjldaljfhadjfhadjffkgjeprta jj...... aj aj aj aj ajaja.....'
+                    info.innerHTML = imgList[randomImgListId].iInfo;
                     moreInfoPad.appendChild(info);
                 
 }
 
 createCard();
+
+//>> Card Automation
+
+const scrollHandler = () => {
+    const pageEnd = Math.ceil(window.innerHeight + window.pageYOffset) + 1 >= document.body.offsetHeight;
+    
+    if (pageEnd) {
+        createCard();
+    }
+}
+
+window.addEventListener("scroll", scrollHandler)
+

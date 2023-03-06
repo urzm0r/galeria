@@ -15,6 +15,8 @@
 
     --hdrey: rgb(30, 30, 30);
 
+    --tr-grey: rgba(44, 44, 44, 0.25);
+
 }
 
 /*>> cclasses */
@@ -38,6 +40,8 @@
 body {
     background-color: black;
     margin: 0;
+    background-image: url(back.png);
+    background-size: 256px 256px;
 }
 
 p {
@@ -76,7 +80,7 @@ h1 {
     margin: auto;
     margin-bottom: 0;
     margin-top: calc(2 * var(--u));
-    background-color: var(--grey);
+    background-color: var(--tr-grey);
     width: calc(100% - 4 * var(--u));
     max-width: 1000px;
     height: 100%;
@@ -177,3 +181,46 @@ h1 {
     .more-info-pad {
         padding: var(--u);
     }
+
+/*>> FOOTER */
+#footer-cont {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#footer-button {
+    display: block;
+    width: calc(2 * var(--u));
+    height: calc(2 * var(--u));
+    background-color: var(--drey);
+    margin: calc(var(--u) / 2);
+   /* position: fixed;
+    bottom: var(--u);
+    left: var(--u);*/
+    font-size: 1.5rem;
+    font-family: serif;
+    border-radius: var(--brd);
+    border: none;
+    box-shadow: 0 0 15px black;
+}
+
+#footer {
+    /*
+    position: fixed;
+    bottom: 0;*/
+    width: 100%;
+    background-color: var(--drey);
+    box-shadow: 0 0 15px black;
+    padding: var(--u);
+    border-top-left-radius: var(--brd);
+    border-top-right-radius: var(--brd);
+}
+
+#footer h3 {
+    margin-bottom: var(--u);
+}
+
+#footer ul li {
+    margin-bottom: calc(var(--u) / 2);
+}
