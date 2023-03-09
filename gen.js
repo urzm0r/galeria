@@ -1,23 +1,52 @@
 //>> Image Info
 
+const placeholder = "Norbi quis pulvinar est, at viverra nunc. Cras suscipit, sem ultricies pulvinar fringilla, magna ante molestie elit, et pulvinar nunc nibh vel turpis. Nam in accumsan quam, vel condimentum tortor. Maecenas mollis accumsan orci, a tincidunt augue viverra hendrerit. Nulla et cursus erat, quis suscipit massa. Aliquam nisl erat, lobortis quis facilisis et, aliquet nec elit. Pellentesque nulla nisl, venenatis vel hendrerit vel, hendrerit sed eros."
+
 let imgList = [
     {
-        iTitle : "Call On Amadeus",
-        iAuthor : "Ambert Lan",
-        iYear : "1988",
-        iMedium : "Oil paint on canvas",
-        iDimensions : "84.1 cm x 152.4 cm",
-        iInfo : "Amadeus sleeps on A CALM ROAD ( to Salvador ). People were sleeping, their sleep is deep. Deep, deep, deep, deep deep sleep. Lorem ipsum dollar in amount.",
-        iSrcPath : "img/2000 acres.png"
+        iTitle : "Portrait of Adeline Ravoux I",
+        iAuthor : "Vincent van Gogh",
+        iYear : "1890",
+        iMedium : "Olej na płótnie",
+        iDimensions : "52.0 x 52.0 cm",
+        iInfo : placeholder,
+        iSrcPath : "img/adeline-ravoux.jpg"
     },
     {
-        iTitle : "Leaves Over Texas",
-        iAuthor : "Lambert Tens",
-        iYear : "2010",
-        iMedium : "Pastel",
-        iDimensions : "60cm x 55.5cm",
-        iInfo : "ijjfajjljlljljfaljjljljljlafjljlj aajj....... bbbb uiehrquehfajdfhajldhfljhlfahlhlhfahlhlfahhlfahlafhlhfa aj...... bbbbb adadhlhlhldahlhlhlhljfshljfsjljlsfjsjsjfslkdfj akdaj aj..... bbbbbb hdahadjljljladjljjljadljdajldjldaljfhadjfhadjffkgjeprta jj...... aj aj aj aj ajaja.....",
-        iSrcPath : "img/lot.png"
+        iTitle : "Farmhouse in Provence",
+        iAuthor : "Vincent van Gogh",
+        iYear : "1898",
+        iMedium : "Olej na płótnie",
+        iDimensions : "46.1 cm x 60.9 cm",
+        iInfo : placeholder,
+        iSrcPath : "img/farmhouse in provence.jpg"
+    },
+    {
+        iTitle : "Bedroom in Arles",
+        iAuthor : "Vincent van Gogh",
+        iYear : "1888",
+        iMedium : "Olej na płótnie",
+        iDimensions : "72.0 cm x 90.0 cm",
+        iInfo : placeholder,
+        iSrcPath : "img/the bedroom.jpg"
+    },
+    {
+        iTitle : "The Church at Auvers",
+        iAuthor : "Vincent van Gogh",
+        iYear : "1890",
+        iMedium : "Olej na płótnie",
+        iDimensions : "74.0 cm x 94.0 cm",
+        iInfo : placeholder,
+        iSrcPath : "img/the church at auvers.jpg"
+    },
+    {
+        iTitle : "Wheatfield with Crows",
+        iAuthor : "Vincent van Gogh",
+        iYear : "1890",
+        iMedium : "Olej na płótnie",
+        iDimensions : "50.2 cm x 103.0 cm",
+        iInfo : placeholder,
+        iSrcPath : "img/wheatfield with crows.jpg"
     }
 ];
 const ImgListLength = imgList.length - 1;
@@ -79,11 +108,18 @@ function showInfo(destId, icon) {
 //>> CARD GENERATION
 
 let nextId = 2;
+let startRandom = false;
 
 function createCard() {
     const mainCont = document.getElementById('main-cont');
-    const randomImgListId = Math.floor(Math.random() * (ImgListLength - 0 + 1)) // ( max - min + 1 ) + min; 
-    console.log(randomImgListId);
+    let randomImgListId = 0;
+    if (startRandom) {
+        randomImgListId = Math.floor(Math.random() * (ImgListLength - 0 + 1)) // ( max - min + 1 ) + min; 
+    } else {
+        randomImgListId = nextId;
+    }
+   
+    
 
     // card
     const card = document.createElement('div');
@@ -169,17 +205,20 @@ function createCard() {
         //card/desc/more-info
 
         const moreInfo = document.createElement('div');
-        moreInfo.className = 'more-info b';
+        moreInfo.className = 'more-info';
         moreInfo.id = nextId.toString() + 'info';
         moreInfo.setAttribute('data-collapsed', 'true');
         moreInfo.style.height = 0;
         nextId = nextId + 1;
+        if (nextId == ImgListLength) {
+            startRandom = true;
+        }
         desc.appendChild(moreInfo);
 
             //card/desc/more-info/more-info-pad
 
             const moreInfoPad = document.createElement('div');
-            moreInfoPad.className = 'more-info-pad';
+            moreInfoPad.className = 'more-info-pad b';
             moreInfo.appendChild(moreInfoPad);
 
                 //card/desc/more-info/more-info-pad/<p>
