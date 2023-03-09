@@ -14,14 +14,14 @@
         <h1>GALERIA</h1>
     </div>
     <div id="footer-cont">
-        <button type="button" id="footer-button">i</button>
-        <div id="footer">
+        <button type="button" id="footer-button" class="hvr">i</button>
+        <div id="footer" data-collapsed="true">
             <div class="footer-pad">
                 <ul>
                     <h3>Info</h3>
-                    <li>O GALERII...</li>
-                    <li>FAQ</li>
-                    <li>Prawa autorskie</li>
+                    <li><a href="#">O GALERII...</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Prawa autorskie</a></li>
                 </ul>
             </div>
         </div>
@@ -42,10 +42,12 @@
                     <!--<div class="showmore desc-btn flex-cont b hvr">Historia
                         <div class="trg-icon"></div>
                     </div>-->
-                    <button type="button" onclick="change(this.id)" class="showmore desc-btn flex-cont b hvr" id="1">Historia vii</button>
+                    <button type="button" onclick="change(this.id)" class="showmore desc-btn flex-cont b hvr" id="1">
+                        <img src="expand-icon.svg" alt="expand" class="icon" id="1icon">
+                    </button>
                 </div>
-                <div class="more-info b" id="1info">
-                    <div class="more-info-pad">
+                <div class="more-info" id="1info" data-collapsed="true" style="height: 0;">
+                    <div class="more-info-pad b">
                         <p>Amadeus sleeps on A CALM ROAD ( to Salvador ). People were sleeping, their sleep is deep. Deep, deep, deep, deep deep sleep. Lorem ipsum dollar in amount.</p>
                     </div>
                 </div>

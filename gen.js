@@ -26,18 +26,24 @@ const ImgListLength = imgList.length - 1;
 
 function change(callerId) {
     const destId = callerId + 'info';
-    const dest = document.getElementById(destId)
-    let isCollapsed = dest.getAttribute('data-collapsed') === 'true';
+    const dest = document.getElementById(destId);
 
+    const iconId = callerId + 'icon';
+    const icon = document.getElementById(iconId);
+
+    let isCollapsed = dest.getAttribute('data-collapsed') === 'true';
+    console.log(dest.getAttribute('data-collapsed'));
     if(isCollapsed) {
-        showInfo(destId);
+        console.log('show');
+        showInfo(destId, icon);
     } else {
-        hideInfo(destId)
+        console.log('hide');
+        hideInfo(destId, icon);
     }
 }
 
-function hideInfo(destId) {
-    const dest = document.getElementById(destId)
+function hideInfo(destId, icon) {
+    const dest = document.getElementById(destId);
     const destHeight = dest.scrollHeight;
 
     let ElementTransition = dest.style.transition;
@@ -46,19 +52,22 @@ function hideInfo(destId) {
     requestAnimationFrame(function() {
         dest.style.height = destHeight + 'px';
         dest.style.transition = ElementTransition;
+        icon.style.transform = "rotate(180deg)";
 
         requestAnimationFrame(function() {
             dest.style.height = 0 + 'px';
+            icon.style.transform = "none";
         });
     });
 
-    dest.setAttribute('data-collapsed', 'true')
+    dest.setAttribute('data-collapsed', 'true');
 }
 
-function showInfo(destId) {
+function showInfo(destId, icon) {
     const dest = document.getElementById(destId)
     const destHeight = dest.scrollHeight;
     dest.style.height = destHeight + 'px';
+    icon.style.transform = "rotate(180deg)";
     dest.addEventListener('transitionend', function(e) {
         dest.removeEventListener('transitionend', arguments.callee);
         dest.style.height = null;
@@ -144,16 +153,26 @@ function createCard() {
             const showmore = document.createElement('button');
             showmore.className = 'showmore desc-btn flex-cont b hvr';
             showmore.id = nextId.toString();
-            showmore.innerHTML = 'Historia viii*';
             showmore.type = 'button';
             showmore.setAttribute('onclick', 'change(this.id)')
             descInfo.appendChild(showmore);
+
+                //card/desc/desc-info/showmore/icon
+                
+                const icon = document.createElement('img');
+                icon.className = 'icon';
+                icon.id = nextId.toString() + 'icon';
+                icon.src = 'expand-icon.svg';
+                icon.alt = 'expand';
+                showmore.appendChild(icon);
 
         //card/desc/more-info
 
         const moreInfo = document.createElement('div');
         moreInfo.className = 'more-info b';
         moreInfo.id = nextId.toString() + 'info';
+        moreInfo.setAttribute('data-collapsed', 'true');
+        moreInfo.style.height = 0;
         nextId = nextId + 1;
         desc.appendChild(moreInfo);
 
@@ -187,12 +206,13 @@ window.addEventListener("scroll", scrollHandler)
 
 //>> HIDE/SHOW FOOTER
 
+document.getElementById('footer').style.height = 0;
+
 document.getElementById('footer-button').addEventListener('click', function() {
     const footer = document.getElementById('footer');
     const footerHeight = footer.scrollHeight;
 
     if (footer.getAttribute('data-collapsed') === 'true') {
-        console.log('false');
         footer.style.height = footerHeight + 'px';
             footer.addEventListener('transitionend', function(e) {
             footer.removeEventListener('transitionend', arguments.callee);
@@ -201,7 +221,6 @@ document.getElementById('footer-button').addEventListener('click', function() {
 
         footer.setAttribute('data-collapsed', 'false');
     } else {
-        console.log('true');
         let ElementTransition = footer.style.transition;
         footer.style.transition = '';
     

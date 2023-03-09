@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&display=swap');
 
+
 * {
     box-sizing: border-box;
 
@@ -10,12 +11,15 @@
     --lrey: rgb(66, 66, 66);
     --grey: rgb(44, 44, 44);
 
+    --ddwte: rgb(200, 200, 200);
     --dwte: rgb(230, 230, 230);
-
 
     --hdrey: rgb(30, 30, 30);
 
     --tr-grey: rgba(44, 44, 44, 0.25);
+
+    margin: 0;
+    padding: 0;
 
 }
 
@@ -32,7 +36,12 @@
 }
 
 .hvr:hover {
-    background-color: var(--hdrey);
+    background-color: var(--grey);
+}
+
+.icon {
+    display: block;
+    max-height: 16px;
 }
 
 /*>> pre */
@@ -48,10 +57,23 @@ p {
     margin: 0;
 }
 
+a {
+    color: var(--dwte);
+    padding: 5px;
+    border-radius: var(--brd);
+}
+
+a:hover {
+    font-weight: 500;
+    background-color: var(--grey);
+}
+
 div, p, button {
     color: var(--dwte);
     font-family: 'Golos Text', sans-serif;
 }
+
+
 
 /*>> CSS */
 
@@ -71,12 +93,14 @@ h1 {
     color: var(--dwte);
     font-size: 10vw;
     font-family: 'Golos Text', sans-serif;
-    text-shadow: -35px -15px 0 var(--drey), 35px 15px 0 var(--drey);
+    text-shadow: -6vw -2vw 0 var(--drey), 6vw 2vw 0 var(--drey);
+    margin: calc(2 * var(--u));
 }
+
+
 
 #main-cont {
     margin: 0;
-    margin-bottom: 0;
     margin-top: calc(2 * var(--u));
     background-color: var(--tr-grey);
     width: 100%;
@@ -89,6 +113,8 @@ h1 {
 /*>> CARD */
 
 .card {
+    box-shadow: 0 0 12px black;
+
     width: 100%;
     background-color: var(--drey);
 
@@ -132,18 +158,20 @@ h1 {
         .img-author {
             padding-top: calc(var(--u) * 0.25);
             padding-bottom: var(--u);
-            font-size: min(2vw, 26px);
+            font-size: max(1vw, 22px);
         }
 
     .desc-info {
         width: 100%;
-        height: calc(2 * var(--u));
+        height: calc(8 * var(--u));
 
         display: flex;
+        flex-direction: column;
     }   
 
         .desc-info * {
             font-size: 16px;
+            height: calc(2 * var(--u));
         }
 
         .desc-btn {
@@ -153,19 +181,8 @@ h1 {
             border-radius: var(--brd);
         }
 
-        .trg-icon {
-            margin-left: 5px;
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 10px solid var(--dwte);
-        }
-
     .more-info {
         border-radius: var(--brd);
-        border-top: none;
-
         overflow: hidden;
         transition:height 0.3s ease-in-out;
         height: auto;
@@ -176,6 +193,7 @@ h1 {
         }
 
     .more-info-pad {
+        border-top: none;
         padding: var(--u);
     }
 
@@ -213,7 +231,7 @@ h1 {
     border-top-right-radius: var(--brd);
 
     overflow: hidden;
-    transition:height 0.3s ease-in-out;
+    transition: height 0.3s ease-in-out;
     height: auto;
 }
 
@@ -229,10 +247,25 @@ h1 {
     margin-bottom: calc(var(--u) / 2);
 }
 
-@media only screen and (min-width: 700px) {
+#footer ul {
+    list-style-type: none;
+}
+
+@media only screen and (min-width: 820px) {
     #main-cont {
-        margin: calc(2 * var(--u));
+        /*//margin: calc(2 * var(--u));*/
+        margin: auto;
         width: calc(100% - 4 * var(--u));
         max-width: 1000px;
+        margin-top: calc(2 * var(--u));
+    }
+
+    .desc-info {
+        flex-direction: row;
+        height: calc(2 * var(--u));
+    }
+
+    .img-author {
+        font-size: max(2vw, 26px);
     }
 }
