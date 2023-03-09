@@ -229,11 +229,6 @@ h1 {
     margin-bottom: calc(var(--u) / 2);
 }
 
-/* desktop 
-@media screen and (min-width: 700px) {
-    
-}*/
-
 @media only screen and (min-width: 700px) {
     #main-cont {
         margin: calc(2 * var(--u));
