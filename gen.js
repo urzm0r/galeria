@@ -185,3 +185,37 @@ const scrollHandler = () => {
 
 window.addEventListener("scroll", scrollHandler)
 
+//>> HIDE/SHOW FOOTER
+
+document.getElementById('footer-button').addEventListener('click', function() {
+    const footer = document.getElementById('footer');
+    const footerHeight = footer.scrollHeight;
+
+    if (footer.getAttribute('data-collapsed') === 'true') {
+        console.log('false');
+        footer.style.height = footerHeight + 'px';
+            footer.addEventListener('transitionend', function(e) {
+            footer.removeEventListener('transitionend', arguments.callee);
+            footer.style.height = null;
+        });
+
+        footer.setAttribute('data-collapsed', 'false');
+    } else {
+        console.log('true');
+        let ElementTransition = footer.style.transition;
+        footer.style.transition = '';
+    
+        requestAnimationFrame(function() {
+            footer.style.height = footerHeight + 'px';
+            footer.style.transition = ElementTransition;
+    
+            requestAnimationFrame(function() {
+                footer.style.height = 0 + 'px';
+            });
+        });
+    
+        footer.setAttribute('data-collapsed', 'true')
+    }
+    
+
+});
